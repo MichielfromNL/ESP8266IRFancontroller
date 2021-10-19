@@ -28,12 +28,13 @@ The final PCB
 It took some time to figure out the IR command codes.
 
 The IR analyzer reported: 
-`Protocol  : SYMPHONY
+```Protocol  : SYMPHONY
 Codes      :  (12 bits)
 uint16_t rawData[95] = {1254, 432,  1254, 432,  408, 1276,  408, 1256,  428, 1276,  410, 1276,  408, 1276,  408, 1278,  408, 1278,  406, 1276,  410, 1276,  408,
 7940,  1254, 432,  1254, 432,  408, 1276,  408, 1276,  408, 1278,  1252, 434,  1254, 432,  1254, 430,  1254, 432,  1254, 434,  1252, 432,  1252, 
 7096,  1254, 432,  1254, 432,  408, 1278,  408, 1276,  408, 1276,  410, 1256,  428, 1276,  408, 1276,  1254, 432,  410, 1274,  408, 1276,  408, 
-7940,  1254, 434,  1252, 432,  408, 1276,  410, 1276,  408, 1278,  408, 1278,  408, 1276,  408, 1278,  1252, 434,  406, 1276,  408, 1276,  408};  // SYMPHONY C00`
+7940,  1254, 434,  1252, 432,  408, 1276,  410, 1276,  408, 1278,  408, 1278,  408, 1276,  408, 1278,  1252, 434,  406, 1276,  408, 1276,  408};  // SYMPHONY C00
+```
 
 A sequence of approx 1250 usecs then 403 usecs is a 1, 40x followed by 12xx is a 0.  A 7940 is pause
 Hence, the sequence is:  0xC00 , 0xC7F, 0xC08 ; each 12 bits.  the last command is  repeated 3 x )
@@ -45,13 +46,12 @@ Each command must be repeated 3 times. The dimmer of course as many times as nee
 
 The proper way to send these using the IR library turned out to be:
 
-//  Send an IR command
+```//  Send an IR command
 void sendCmd(IRcommand cmd, int repeat = 3) {
     irsend.sendSymphony(0xC00, 12,1);
     irsend.sendSymphony(0xC7F, 12,1);
     irsend.sendSymphony(cmd, 12,repeat);
-}
-
+}```
 
 
 ## Telnet
