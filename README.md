@@ -14,8 +14,8 @@ This is how the final result looks
 This is how it works
 https://github.com/MichielfromNL/ESP8266IRFancontroller/blob/main/images/How%20it%20works.mp4
 
-The schematics:
-![The schematics](/images/Schematics%20IR%20Fan.jpg)
+The schematics
+![The schematics](/images/Schematics%20IR%20Fan.jpg
 
 The prototype
 ![The Prototype](/images/Prototype.jpeg)
@@ -25,6 +25,12 @@ The final PCB
 
 
 ## Some details about the code & project.
+
+### photo resistor
+On the PCB you probably notice a photoresistor that was not in the schenatics. The photoresistor is serially wired to a 10K resistor (betwen gnd and vcc) and connected to A0.
+This is because I wanted to  find out if I can detect if the light is (already) on or off, but that does not work. The daylight interferes way to much.  
+
+### IR commands
 It took some time to figure out the IR command codes. 
 The FAN unit appears to be from Westinghouse, but there are quite a few variants. 
 The basic protocol is "Symphony" ,  but the sequences are a bit different from the usual: a standard single sequence for a command.
