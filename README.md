@@ -5,7 +5,7 @@ It would of course be possible to mount a second lamp, but that would be a bit o
 
 So I decided to craft an IR trasmitter controlled by the regular 220V light switch, that mimics the (light) signal of the remote.
 
-The approach I took;  a small box with an esp8266 (Wemos D1 mini), IR LED, and optocoupled 220 detection.
+The approach I took;  a small box with an esp8266 (Wemos D1 mini), IR LED, and optocoupled 220V detection.
 I used the [IRremoteESP8266 library](https://github.com/crankyoldgit/IRremoteESP8266) to analyse and send signals.
 
 This is how the final result looks
@@ -25,6 +25,13 @@ The final PCB  (Note: the Gnd coloured green/yellow wire is connected to the lig
 
 
 ## Some details about the code & project.
+
+### Components
+Opto coupler is a 
+
+### IR led resistor value
+I use a 10 Ohm resistor to limit the IR current. IR led has 1.5V forward, Remains 3.3-1.5 = 1.8 volts. With 10 Ohms that would be 180mA peak, which is way over its max current of approx 100mA. But the IR LED is powered with (38 Khz) pulses, that is why the effective current is much lower and the peaks are very short. You see many examples in IR transmitter projects where only 10Ohms is used. I checked this in practice, with a higher value the IR light signal is not powerfull enough. 
+But if I would rebuild, I would probable use 18 Ohms or so.   
 
 ### Photo resistor
 On the PCB you probably notice a photoresistor that was not in the schenatics. The photoresistor is serially wired to a 10K resistor (betwen gnd and vcc) and connected to A0.
