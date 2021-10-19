@@ -27,7 +27,8 @@ The final PCB  (Note: the Gnd coloured green/yellow wire is connected to the lig
 ## Some details about the code & project.
 
 ### Components
-Opto coupler is a 
+Opto coupler is a LTV-817-B, but pretty much any opto coupler capable of dealing with > 220V will do. 
+Diode at input is an IN4001  (high voltage). Transistors are 2N2222 , but any NPN will do just fine.
 
 ### IR led resistor value
 I use a 10 Ohm resistor to limit the IR current. IR led has 1.5V forward, Remains 3.3-1.5 = 1.8 volts. With 10 Ohms that would be 180mA peak, which is way over its max current of approx 100mA. But the IR LED is powered with (38 Khz) pulses, that is why the effective current is much lower and the peaks are very short. You see many examples in IR transmitter projects where only 10Ohms is used. I checked this in practice, with a higher value the IR light signal is not powerfull enough. 
