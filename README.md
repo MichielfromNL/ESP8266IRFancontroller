@@ -12,16 +12,16 @@ This is how the final result looks
 ![This is how it looks](/images/Main%20pic.jpg)  
 
 This is how it works
-![How it works](/images/How%20it%20works.mp4)
+https://github.com/MichielfromNL/ESP8266IRFancontroller/images/How%20it%20works.mp4
 
 The schematics:
 ![The schematics](/images/Schematics%20IR%20Fan.jpg)
 
 The prototype
-![The Prototype](/images/Prototype.jpg)
+![The Prototype](/images/Prototype.jpeg)
 
 The final PCB
-![The PCB](/images/PCB.jpg)
+![The PCB](/images/PCB.jpeg)
 
 Some details about the code.
 It took some time to figure out the IR sequence.
