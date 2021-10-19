@@ -25,20 +25,23 @@ The final PCB
 
 
 ## Some details about the code & project.
-It took some time to figure out the IR command codes.
+It took some time to figure out the IR command codes. 
+The FAN unit appears to be from Westinghouse, but there are quite a few variants. 
+The basic protocol is "Symphony" ,  but the sequences are a bit different from the usual: a standard single sequence for a command.
 
 The IR analyzer reported: 
 ```Protocol  : SYMPHONY
 Codes      :  (12 bits)
-uint16_t rawData[95] = {1254, 432,  1254, 432,  408, 1276,  408, 1256,  428, 1276,  410, 1276,  408, 1276,  408, 1278,  408, 1278,  406, 1276,  410, 1276,  408,
+uint16_t rawData[95] = {
+1254, 432,  1254, 432,  408, 1276,  408, 1256,  428, 1276,  410, 1276,  408, 1276,  408, 1278,  408, 1278,  406, 1276,  410, 1276,  408,
 7940,  1254, 432,  1254, 432,  408, 1276,  408, 1276,  408, 1278,  1252, 434,  1254, 432,  1254, 430,  1254, 432,  1254, 434,  1252, 432,  1252, 
 7096,  1254, 432,  1254, 432,  408, 1278,  408, 1276,  408, 1276,  410, 1256,  428, 1276,  408, 1276,  1254, 432,  410, 1274,  408, 1276,  408, 
 7940,  1254, 434,  1252, 432,  408, 1276,  410, 1276,  408, 1278,  408, 1278,  408, 1276,  408, 1278,  1252, 434,  406, 1276,  408, 1276,  408};  // SYMPHONY C00
 ```
 
-A sequence of approx 1250 usecs then 403 usecs is a 1, 40x followed by 12xx is a 0.  A 7940 is pause
-Hence, the sequence is:  0xC00 , 0xC7F, 0xC08 ; each 12 bits.  the last command is  repeated 3 x )
-Analyzing this, I found the following commands:
+A sequence of approx 1250 usecs then 403 usecs is a 1, 40x followed by 12xx is a 0.  A 7xxx  is pause
+Hence, the (on/off) sequence above is:  0xC00 , 0xC7F, 0xC08 ; each 12 bits.  the last command is  repeated 3 x
+By repeating this for each remote button, I found the following commands:
 
 ![image](https://user-images.githubusercontent.com/80706499/137891934-c97163ce-37df-450b-a9c0-77ea92459cf7.png)
 
@@ -46,23 +49,21 @@ Each command must be repeated 3 times. The dimmer of course as many times as nee
 
 The proper way to send these using the IR library turned out to be:
 
-```//  Send an IR command
+```
+//  Send the Fan IR command
 void sendCmd(IRcommand cmd, int repeat = 3) {
-    irsend.sendSymphony(0xC00, 12,1);
-    irsend.sendSymphony(0xC7F, 12,1);
-    irsend.sendSymphony(cmd, 12,repeat);
-}```
+    irsend.sendSymphony(0xC00,12,1);
+    irsend.sendSymphony(0xC7F,12,1);
+    irsend.sendSymphony(cmd,12,repeat);
+}
+```
 
 
 ## Telnet
-For experimenting, I added a telnet interface, using the [ESP Telnet](https://github.com/LennartHennigs/ESPTelnet) library from Lennart Hennigs.
+For experimenting, I added a telnet interface using the [ESP Telnet](https://github.com/LennartHennigs/ESPTelnet) library from Lennart Hennigs.
+Typing a question mark shows the possible commands
 At some time, using that interface you can connect it to home automation, sending commands through that interface.
 Of course, this is pretty unsafe. NO UID /PWD or the like, so never ever make this accessible from the internet
 
 Have fun !
 
-
-<!---
-MichielfromNL/MichielfromNL is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
