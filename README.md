@@ -53,6 +53,7 @@ void sendCmd(IRcommand cmd, int repeat = 3) {
 }
 
 
+
 ## Telnet
 For experimenting, I added a telnet interface, using the [ESP Telnet](https://github.com/LennartHennigs/ESPTelnet) library from Lennart Hennigs.
 At some time, using that interface you can connect it to home automation, sending commands through that interface.
