@@ -1,6 +1,6 @@
 ## 220V controlled ESP8266 IR Ceiling Fan transmitter 
 We recently bought a  "Lyndby" (vanilla brand) ceiling Fan for our new home with an embedded light. It is controlled by an IR remote, normally sitting on a night stand next to our bed. The fan is mounted above our bed, where normally the bedroom ceiling light fixture sits which is wired to the standard on-off light switch next to the door.\
-The problem is that when we  enter the room when it is dark, we have to first locate the the remote on the night stand before we can switch on the light. Pretty inconvenient. We considered mounting a second lamp above the fan, but that would look a bit odd.\
+The problem is that when we  enter the room when it is dark, we have to first locate the remote on the night stand before we can switch on the light. Pretty inconvenient. We considered mounting a second lamp above the fan, but that would look a bit odd.\
 So, enough excuses to start crafting my little ESP IR box that mimics the (light) signal of the remote.
 
 The approach I took: a small box with an esp8266 (Wemos D1 mini), IR LED, and optocoupled 220V detection.
