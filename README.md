@@ -14,11 +14,11 @@ This is how the final result looks
 This is how it works
 https://github.com/MichielfromNL/ESP8266IRFancontroller/blob/main/images/How%20it%20works.mp4
 
-The schematics
-![Schematics](/images/Schematics%20IR%20Fan.jpg
-
 The prototype
 ![The Prototype](/images/Prototype.jpeg)
+
+The schematics
+![Schematics](/images/Schematics%20IR%20Fan.jpg)
 
 The final PCB
 ![The PCB](/images/PCB.jpg)
