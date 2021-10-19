@@ -20,7 +20,7 @@ The prototype
 The schematics
 ![Schematics](/images/Schematics%20IR%20Fan.jpg)
 
-The final PCB
+The final PCB  (Note: the Gnd coloured green/yellow wire is connected to the light switch)
 ![The PCB](/images/PCB.jpg)
 
 
