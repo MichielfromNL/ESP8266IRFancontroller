@@ -12,7 +12,7 @@ This is how the final result looks
 ![This is how it looks](/images/Main%20pic.jpg)  
 
 This is how it works
-https://github.com/MichielfromNL/ESP8266IRFancontroller/images/How%20it%20works.mp4
+https://github.com/MichielfromNL/ESP8266IRFancontroller/blob/main/images/How%20it%20works.mp4
 
 The schematics:
 ![The schematics](/images/Schematics%20IR%20Fan.jpg)
@@ -21,12 +21,50 @@ The prototype
 ![The Prototype](/images/Prototype.jpeg)
 
 The final PCB
-![The PCB](/images/PCB.jpeg)
+![The PCB](/images/PCB.jpg)
 
-Some details about the code.
-It took some time to figure out the IR sequence.
 
-Telnet
+##Some details about the code & project.
+It took some time to figure out the IR command codes.
+
+The IR analyzer reported: 
+`Protocol  : SYMPHONY
+Codes      :  (12 bits)
+uint16_t rawData[95] = {1254, 432,  1254, 432,  408, 1276,  408, 1256,  428, 1276,  410, 1276,  408, 1276,  408, 1278,  408, 1278,  406, 1276,  410, 1276,  408, 
+7940,  1254, 432,  1254, 432,  408, 1276,  408, 1276,  408, 1278,  1252, 434,  1254, 432,  1254, 430,  1254, 432,  1254, 434,  1252, 432,  1252, 
+7096,  1254, 432,  1254, 432,  408, 1278,  408, 1276,  408, 1276,  410, 1256,  428, 1276,  408, 1276,  1254, 432,  410, 1274,  408, 1276,  408, 
+7940,  1254, 434,  1252, 432,  408, 1276,  410, 1276,  408, 1278,  408, 1278,  408, 1276,  408, 1278,  1252, 434,  406, 1276,  408, 1276,  408};  // SYMPHONY C00
+![image](https://user-images.githubusercontent.com/80706499/137891552-4788c546-e611-4997-876a-908df6e6a68f.png)
+`
+a sequence of approx 1250 usecs then 403 usecs is a 1, 40x followed by 12xx is a 0.  A 7940 is pause
+Hence, the sequence is:  0xC00 , 0xC7F, 0xC08 ; each 12 bits.  the last command is  repeated 3 x )
+Analyzing this, I found the following commands:
+
+All codes start with 0xC00 , 0xC7F, and then:
+`On/Off  	0xC08   repeated 3+ times
+Dimmer	  0xC20   repeated xxxx times
+Fan High  0xC01   repeated 3+ times
+Fan Med   0xC04   repeated 3+ times
+Fan Low   0xC43   repeated 3+ times
+Fan Off	  0xC10   repeated 3+ times
+`
+![image](https://user-images.githubusercontent.com/80706499/137891934-c97163ce-37df-450b-a9c0-77ea92459cf7.png)
+
+The proper way to send these using the IR library turned out to be:
+`//  Send an IR command
+void sendCmd(IRcommand cmd, int repeat = 3) {
+    irsend.sendSymphony(0xC00, 12,1);
+    irsend.sendSymphony(0xC7F, 12,1);
+    irsend.sendSymphony(cmd, 12,repeat);
+}`
+
+
+##Telnet
+For experimenting, I added a telnet interface, using the [ESP Telnet](https://github.com/LennartHennigs/ESPTelnet) library from Lennart Hennigs.
+At some time, using that interface you can connect it to home automation, sending commands through that interface.
+Of course, this is pretty unsafe. NO UID /PWD or the like, so never ever make this accessible from the internet
+
+Have fun !
 
 
 <!---
