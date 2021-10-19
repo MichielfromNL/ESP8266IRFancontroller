@@ -8,12 +8,15 @@ So I decided to craft an IR trasmitter controlled by the regular 220V light swit
 The approach I took;  a small box with an esp8266 (Wemos D1 mini), IR LED, and optocoupled 220 detection.
 I used the [IRremoteESP8266 library](https://github.com/crankyoldgit/IRremoteESP8266) to analyse and send signals.
 
-I  found a 3d printed box for a regular 50x70 mm experiment PCB, design included
+I  found a 3d printed box for a regular 50x70 mm experiment PCB
 
-The result:
+![This is how it looks](/images/Main%20pic.jpg)  
 
-The schematics:
+![The schematics](/images/Schematics%20IR%20Fan.jpg):
 
+![The Prototype](/images/Schematics%20IR%20Fan.jpg):
+
+![The PCB](/images/Schematics%20IR%20Fan.jpg):
 
 
 <!---
