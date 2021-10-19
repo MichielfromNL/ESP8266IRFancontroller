@@ -39,8 +39,9 @@ It took some time to figure out what the IR command codes are. The FAN IR contro
 The basic protocol turns out to be "Symphony", but the sequences are a bit different from the usual which is: a "single" bitsequence for each command.
 
 The IR analyzer (breadboard prototype) reported: 
-```Protocol  : SYMPHONY
-Codes      :  (12 bits)
+```
+Protocol  : SYMPHONY
+Codes     :  (12 bits)
 uint16_t rawData[95] = {
 1254, 432,  1254, 432,  408, 1276,  408, 1256,  428, 1276,  410, 1276,  408, 1276,  408, 1278,  408, 1278,  406, 1276,  410, 1276,  408,
 7940,  1254, 432,  1254, 432,  408, 1276,  408, 1276,  408, 1278,  1252, 434,  1254, 432,  1254, 430,  1254, 432,  1254, 434,  1252, 432,  1252, 
