@@ -22,7 +22,7 @@ The schematics
 
 The final PCB  (Note: the Gnd coloured green/yellow wire is connected to the light switch)
 ![The PCB](/images/PCB.jpg)
-I mounted the IR led under the Wemos D1, because the led pops thriugh a small hole at the front of the 3D printed box.
+I mounted the IR led under the Wemos D1, because the led peeps through a small hole at the front of the 3D printed box.
 Make sure that the 220V part on the PCB is properly separated/insulated from the low voltage parts. be safe !
 
 ## Some details about the code & project.
@@ -54,9 +54,9 @@ uint16_t rawData[95] = {
 7940,  1254, 434,  1252, 432,  408, 1276,  410, 1276,  408, 1278,  408, 1278,  408, 1276,  408, 1278,  1252, 434,  406, 1276,  408, 1276,  408};  // SYMPHONY C00
 ```
 
-A sequence of approx 12xx usecs then 4xx usecs is a 1, 4xx followed by 12xx is a 0.  The 7xxx  usecs is pause
-Hence, the (on/off) sequence above is:  0xC00 , 0xC7F, 0xC08 ; each 12 bits. The last command is  repeated 3 x
-By repeating this analysis for each remote buttonpress, I found the following commands:
+A sequence of approx 12xx usecs then 4xx usecs is a 1, 4xx followed by 12xx is a 0. The 7xxx  usecs is pause.
+Hence, the (on/off) sequence above is:  0xC00 , 0xC7F, 0xC08 ; each 12 bits. The last command is  repeated 3 x.
+By repeating this analysis for each remote buttonpress  found the following commands:
 
 ![image](https://user-images.githubusercontent.com/80706499/137891934-c97163ce-37df-450b-a9c0-77ea92459cf7.png)
 
