@@ -3,9 +3,9 @@ We recently bought a  "Lyndby" (vanilla brand) ceiling Fan for our new home with
 The problem is that the fan is mounted above our bed, where normally a bedroom ceiling light fixture sits which is wired to the standard on-off light switch next to the door.
 It would of course be possible to mount a second lamp, but that would be a bit odd.
 
-So I decided to craft an IR trasmitter controlled by the regular 220V light switch, that mimics the (light) signal of the remote.
+So I decided to craft an ESP8266 IR transmitter controlled by the regular 220V light switch, that mimics the (light) signal of the remote.
 
-The approach I took;  a small box with an esp8266 (Wemos D1 mini), IR LED, and optocoupled 220V detection.
+The approach I took: a small box with an esp8266 (Wemos D1 mini), IR LED, and optocoupled 220V detection.
 I used the [IRremoteESP8266 library](https://github.com/crankyoldgit/IRremoteESP8266) to analyse and send signals.
 
 This is how the final result looks
