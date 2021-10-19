@@ -39,18 +39,18 @@ A sequence of approx 1250 usecs then 403 usecs is a 1, 40x followed by 12xx is a
 Hence, the sequence is:  0xC00 , 0xC7F, 0xC08 ; each 12 bits.  the last command is  repeated 3 x )
 Analyzing this, I found the following commands:
 
-All codes start with 0xC00 , 0xC7F, and then:
 ![image](https://user-images.githubusercontent.com/80706499/137891934-c97163ce-37df-450b-a9c0-77ea92459cf7.png)
 
 Each command must be repeated 3 times. The dimmer of course as many times as needed to set the light at the desired level
 
 The proper way to send these using the IR library turned out to be:
-`//  Send an IR command
+
+//  Send an IR command
 void sendCmd(IRcommand cmd, int repeat = 3) {
     irsend.sendSymphony(0xC00, 12,1);
     irsend.sendSymphony(0xC7F, 12,1);
     irsend.sendSymphony(cmd, 12,repeat);
-}`
+}
 
 
 ## Telnet
