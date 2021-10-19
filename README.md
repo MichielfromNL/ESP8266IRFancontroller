@@ -19,17 +19,17 @@ The schematics
 
 The final PCB  (Note: the Gnd coloured green/yellow wire is connected to the light switch)
 ![The PCB](/images/PCB.jpg)
-I mounted the IR led under the Wemos D1, because the led peeps through a small hole at the front of the 3D printed box.
+I mounted the IR led under the Wemos D1, because the led peeps through a small hole at the front of the 3D printed box.\
 Make sure that the 220V part on the PCB is properly separated/insulated from the low voltage parts. be safe !
 
 ## Some details about the code & project.
 
 ### Components
-Opto coupler is a LTV-817-B, but pretty much any opto coupler capable of dealing with > 220V will do. 
+Opto coupler is a LTV-817-B, but pretty much any opto coupler capable of dealing with > 220V will do.\
 Diode at input is an IN4001  (high voltage). Transistors are 2N2222 , but any NPN will do just fine.
 
 ### IR led resistor value
-I use a 10 Ohm resistor to limit the IR current. IR led has 1.5V forward, Remains 3.3-1.5 = 1.8 volts. With 10 Ohms that would be 180mA peak, which is way over its max current of approx 100mA. But the IR LED is powered with (38 Khz) pulses, that is why the effective current is much lower and the peaks are very short. You see many examples in IR transmitter projects where only 10Ohms is used. I checked this in practice, with a higher value the IR light signal is not powerfull enough. 
+I use a 10 Ohm resistor to limit the IR current. IR led has 1.5V forward, Remains 3.3-1.5 = 1.8 volts. With 10 Ohms that would be 180mA peak, which is way over its max current of approx 100mA. But the IR LED is powered with (38 Khz) pulses, that is why the effective current is much lower and the peaks are very short. You see many examples in IR transmitter projects where only 10Ohms is used. I checked this in practice, with a higher value the IR light signal is not powerfull enough.\
 But if I would rebuild, I would probable use 18 Ohms or so.   
 
 ### Photo resistor
@@ -37,8 +37,7 @@ On the PCB you probably notice a photoresistor that was not in the schenatics. T
 This is because I wanted to  find out if I can detect if the light is (already) on or off, but that does not work. The daylight interferes way to much.
 
 ### IR commands
-It took some time to figure out the IR command codes. 
-The FAN unit appears to be from Westinghouse, but there are quite a few variants. 
+It took some time to figure out the IR command codes. The FAN unit appears to be from Westinghouse, but there are quite a few variants.
 The basic protocol turns out to be "Symphony", but the sequences are a bit different from usual: a standard single bit sequence for each command.
 
 The IR analyzer (breadboard prototype) reported: 
@@ -51,8 +50,8 @@ uint16_t rawData[95] = {
 7940,  1254, 434,  1252, 432,  408, 1276,  410, 1276,  408, 1278,  408, 1278,  408, 1276,  408, 1278,  1252, 434,  406, 1276,  408, 1276,  408};  // SYMPHONY C00
 ```
 
-A sequence of approx 12xx usecs then 4xx usecs is a 1, 4xx followed by 12xx is a 0. The 7xxx  usecs is pause.
-Hence, the (on/off) sequence above is:  0xC00 , 0xC7F, 0xC08 ; each 12 bits. The last command is  repeated 3 x.
+A sequence of approx 12xx usecs then 4xx usecs is a 1, 4xx followed by 12xx is a 0. The 7xxx  usecs is pause.\
+Hence, the (on/off) sequence above is:  0xC00 , 0xC7F, 0xC08 ; each 12 bits. The last command is  repeated 3 x.\
 By repeating this analysis for each remote buttonpress  found the following commands:
 
 ![image](https://user-images.githubusercontent.com/80706499/137891934-c97163ce-37df-450b-a9c0-77ea92459cf7.png)
@@ -70,13 +69,13 @@ void sendCmd(IRcommand cmd, int repeat = 3) {
 }
 ```
 ### Wemos D1 configuration
-The Arduino IDE Wemos D1 config for this sketch is:
-Flash size:  4MB, 1MB OTA, 115200,  Use the OTA port to flash
-Note: the initial upload requires an USB connection. That must be done with the 3v3 jumper disconnected, to prevent a clash between the onboard power from USB and the 3v3 from the power supply. **NEVER POWER THE PCB and the USB at the same time **
+The Arduino IDE Wemos D1 config for this sketch is:\
+Flash size:  4MB, 1MB OTA, 115200,  Use the OTA port to flash. \
+Note: the initial upload requires an USB connection. That must be done with the 3v3 jumper disconnected, to prevent a clash between the onboard power from USB and the 3v3 from the power supply. **NEVER POWER THE PCB and the USB at the same time**
 
 ### Telnet
 For experimenting, I added a telnet interface using the [ESP Telnet](https://github.com/LennartHennigs/ESPTelnet) library from Lennart Hennigs.
-Typing a question mark shows the possible commands
+Typing a question mark shows the possible commands.\
 At some time, using that interface you can connect it to home automation, sending commands through that interface.
 Of course, this is pretty unsafe. NO UID /PWD or the like, so never ever make this accessible from the internet
 
