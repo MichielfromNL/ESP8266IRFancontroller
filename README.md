@@ -26,16 +26,16 @@ The final PCB
 
 ## Some details about the code & project.
 
-### photo resistor
+### Photo resistor
 On the PCB you probably notice a photoresistor that was not in the schenatics. The photoresistor is serially wired to a 10K resistor (betwen gnd and vcc) and connected to A0.
-This is because I wanted to  find out if I can detect if the light is (already) on or off, but that does not work. The daylight interferes way to much.  
+This is because I wanted to  find out if I can detect if the light is (already) on or off, but that does not work. The daylight interferes way to much.
 
 ### IR commands
 It took some time to figure out the IR command codes. 
 The FAN unit appears to be from Westinghouse, but there are quite a few variants. 
-The basic protocol is "Symphony" ,  but the sequences are a bit different from the usual: a standard single sequence for a command.
+The basic protocol turns out to be "Symphony", but the sequences are a bit different from usual: a standard single bit sequence for each command.
 
-The IR analyzer reported: 
+The IR analyzer (breadboard prototype) reported: 
 ```Protocol  : SYMPHONY
 Codes      :  (12 bits)
 uint16_t rawData[95] = {
@@ -45,13 +45,13 @@ uint16_t rawData[95] = {
 7940,  1254, 434,  1252, 432,  408, 1276,  410, 1276,  408, 1278,  408, 1278,  408, 1276,  408, 1278,  1252, 434,  406, 1276,  408, 1276,  408};  // SYMPHONY C00
 ```
 
-A sequence of approx 1250 usecs then 403 usecs is a 1, 40x followed by 12xx is a 0.  A 7xxx  is pause
+A sequence of approx 12xx usecs then 4xx usecs is a 1, 4xx followed by 12xx is a 0.  The 7xxx  usecs is pause
 Hence, the (on/off) sequence above is:  0xC00 , 0xC7F, 0xC08 ; each 12 bits.  the last command is  repeated 3 x
 By repeating this for each remote button, I found the following commands:
 
 ![image](https://user-images.githubusercontent.com/80706499/137891934-c97163ce-37df-450b-a9c0-77ea92459cf7.png)
 
-Each command must be repeated 3 times. The dimmer of course as many times as needed to set the light at the desired level
+Each command must be repeated 3 times. The dimmer, of course, as many times as needed to set the light at the desired level (if you want to use that via the Telnet interface)
 
 The proper way to send these using the IR library turned out to be:
 
@@ -63,7 +63,10 @@ void sendCmd(IRcommand cmd, int repeat = 3) {
     irsend.sendSymphony(cmd,12,repeat);
 }
 ```
-
+# Wemos D1 configuration
+The Arduino IDE Wemos D1 config for this sketch is:
+Flash size:  4MB, 1MB OTA, 115200,  Use the OTA port to flash
+Note: the initial upload requires an USB connection. That must be done with the 3v3 jumper disconnected, to prevent a clash between the onboard power from USB and the 3v3 from the power supply. *NEVER POWER THE PCB and the USB at the same time *
 
 ## Telnet
 For experimenting, I added a telnet interface using the [ESP Telnet](https://github.com/LennartHennigs/ESPTelnet) library from Lennart Hennigs.
