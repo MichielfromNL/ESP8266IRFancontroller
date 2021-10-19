@@ -55,8 +55,8 @@ uint16_t rawData[95] = {
 ```
 
 A sequence of approx 12xx usecs then 4xx usecs is a 1, 4xx followed by 12xx is a 0.  The 7xxx  usecs is pause
-Hence, the (on/off) sequence above is:  0xC00 , 0xC7F, 0xC08 ; each 12 bits.  the last command is  repeated 3 x
-By repeating this for each remote button, I found the following commands:
+Hence, the (on/off) sequence above is:  0xC00 , 0xC7F, 0xC08 ; each 12 bits. The last command is  repeated 3 x
+By repeating this analysis for each remote buttonpress, I found the following commands:
 
 ![image](https://user-images.githubusercontent.com/80706499/137891934-c97163ce-37df-450b-a9c0-77ea92459cf7.png)
 
