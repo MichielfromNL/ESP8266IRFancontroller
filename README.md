@@ -55,10 +55,8 @@ By repeating this analysis for each remote buttonpress I found the following com
 
 ![image](https://user-images.githubusercontent.com/80706499/137891934-c97163ce-37df-450b-a9c0-77ea92459cf7.png)
 
-Each command must be repeated 3 times. The dimmer, of course, as many times as needed to set the light at the desired level (if you want to use that via the Telnet interface)
-
-The proper way to send these using the IR library turned out to be:
-
+Each command must be repeated 3 times. The dimmer, of course, as many times as needed to set the light at the desired level (if you want to use that via the Telnet interface)\
+Hence, the proper way to send these using the IR library turned out to be:
 ```
 //  Send the Fan IR command
 void sendCmd(IRcommand cmd, int repeat = 3) {
@@ -78,6 +76,6 @@ Typing a question mark shows the possible commands.\
 At some time, using that interface you can connect it to home automation, sending commands through that interface.
 Of course, this is pretty unsafe. NO UID /PWD or the like, so never ever make this accessible from the internet
 
-Have fun !
+## Have fun !
 
 
