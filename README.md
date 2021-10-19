@@ -33,12 +33,11 @@ I use a 10 Ohm resistor to limit the IR current. IR led has 1.5V forward, Remain
 But if I would rebuild, I would probable use 18 Ohms or so.   
 
 ### Photo resistor
-On the PCB you probably notice a photoresistor that was not in the schenatics. The photoresistor is serially wired to a 10K resistor (betwen gnd and vcc) and connected to A0.
-This is because I wanted to  find out if I can detect if the light is (already) on or off, but that does not work. The daylight interferes way to much.
+On the PCB you may have noticed a photoresistor that was not in the schematics. The photoresistor is serially wired to a 10K resistor (between gnd and vcc) and connected to Wemos A0, an analog input. This is because I wanted to  find out if I can detect if the light is (already) on or off. However, that does  not work, the daylight interferes way to much with the light.
 
 ### IR commands
-It took some time to figure out the IR command codes. The FAN unit appears to be from Westinghouse, but there are quite a few variants.
-The basic protocol turns out to be "Symphony", but the sequences are a bit different from usual: a standard single bit sequence for each command.
+It took some time to figure out what the IR command codes are. The FAN IR control unit appears to be from Westinghouse, but there are quite a few variants.\
+The basic protocol turns out to be "Symphony", but the sequences are a bit different from the usual which is: a "single" bitsequence for each command.
 
 The IR analyzer (breadboard prototype) reported: 
 ```Protocol  : SYMPHONY
@@ -50,9 +49,9 @@ uint16_t rawData[95] = {
 7940,  1254, 434,  1252, 432,  408, 1276,  410, 1276,  408, 1278,  408, 1278,  408, 1276,  408, 1278,  1252, 434,  406, 1276,  408, 1276,  408};  // SYMPHONY C00
 ```
 
-A sequence of approx 12xx usecs then 4xx usecs is a 1, 4xx followed by 12xx is a 0. The 7xxx  usecs is pause.\
-Hence, the (on/off) sequence above is:  0xC00 , 0xC7F, 0xC08 ; each 12 bits. The last command is  repeated 3 x.\
-By repeating this analysis for each remote buttonpress  found the following commands:
+A sequence of approx 12xx usecs then 4xx usecs is a logical 1, 4xx followed by 12xx is a logical 0. The 7xxx usecs is pause.\
+Hence, the (on/off) sequence above is: 1100 0000 0000 = 0xC00 , 1100 0111 1111 = 0xC7F, 1100 0000 1000 = 0xC08 ; each 12 bits. The last command is repeated 3 (+) times.\
+By repeating this analysis for each remote buttonpress I found the following commands:
 
 ![image](https://user-images.githubusercontent.com/80706499/137891934-c97163ce-37df-450b-a9c0-77ea92459cf7.png)
 
