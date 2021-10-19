@@ -14,9 +14,9 @@ I  found a 3d printed box for a regular 50x70 mm experiment PCB
 
 ![The schematics](/images/Schematics%20IR%20Fan.jpg):
 
-![The Prototype](/images/Schematics%20IR%20Fan.jpg):
+![The Prototype](/images/Prototype.jpg):
 
-![The PCB](/images/Schematics%20IR%20Fan.jpg):
+![The PCB](/images/PCB.jpg):
 
 
 <!---
