@@ -22,7 +22,8 @@ The schematics
 
 The final PCB  (Note: the Gnd coloured green/yellow wire is connected to the light switch)
 ![The PCB](/images/PCB.jpg)
-
+I mounted the IR led under the Wemos D1, because the led pops thriugh a small hole at the front of the 3D printed box.
+Make sure that the 220V part on the PCB is properly separated/insulated from the low voltage parts. be safe !
 
 ## Some details about the code & project.
 
