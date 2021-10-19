@@ -26,8 +26,8 @@ const int IrLed = D2; // Wemos D1 GPIO 4 (D2), IR led output
 const int VSens = D6; // Wemos D1 GPIO 12 (D6) , Optocoupler 220V sensor input.
 const int Lsens = A0; // Wemos D1 ADC0 A0 analogue in for light sensor
 
-const char * ssid = "wifivansimi";
-const char * password = "2xButJptrzyr";
+const char * ssid = "wifiSSID";
+const char * password = "YourWifiPASS";
 const char * Hostname = "ESPFanControl";
 
 IRsend    irsend(IrLed);  // Setup the IR lib with the LED output .
