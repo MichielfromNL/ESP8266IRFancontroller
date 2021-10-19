@@ -15,7 +15,7 @@ This is how it works
 https://github.com/MichielfromNL/ESP8266IRFancontroller/blob/main/images/How%20it%20works.mp4
 
 The schematics
-![The schematics](/images/Schematics%20IR%20Fan.jpg
+![Schematics](/images/Schematics%20IR%20Fan.jpg
 
 The prototype
 ![The Prototype](/images/Prototype.jpeg)
