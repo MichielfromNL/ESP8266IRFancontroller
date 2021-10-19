@@ -1,4 +1,4 @@
-## 220V controlled ESP8266 IR Ceiling Fan tranmitter 
+## 220V controlled ESP8266 IR Ceiling Fan transmitter 
 We recently bought a  "Lyndby" (vanilla brand) ceiling Fan for our new home with an embedded light. It is controlled by an IR remote, normally sitting on a night stand next to our bed.
 The problem is that the fan is mounted above our bed, where normally a bedroom ceiling light fixture sits which is wired to the standard on-off light switch next to the door.
 It would of course be possible to mount a second lamp, but that would be a bit odd.
