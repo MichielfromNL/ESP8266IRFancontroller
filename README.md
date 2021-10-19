@@ -12,7 +12,7 @@ This is how the final result looks
 ![This is how it looks](/images/Main%20pic.jpg)  
 
 This is how it works
-![This is how it looks](/images/How%20it%20works.mp4)
+![How it works](/images/How%20it%20works.mp4)
 
 The schematics:
 ![The schematics](/images/Schematics%20IR%20Fan.jpg)
