@@ -9,10 +9,7 @@ The approach I took;  a small box with an esp8266 (Wemos D1 mini), IR LED, and o
 I used the [IRremoteESP8266 library](https://github.com/crankyoldgit/IRremoteESP8266) to analyse and send signals.
 
 This is how the final result looks
-![This is how it looks](/images/Main%20pic.jpg)  
-
-This is how it works
-https://github.com/MichielfromNL/ESP8266IRFancontroller/blob/main/images/How%20it%20works.mp4
+![This is how it looks](/images/How-it-works.gif)
 
 The prototype
 ![The Prototype](/images/Prototype.jpeg)
