@@ -74,7 +74,7 @@ Note: the initial upload requires an USB connection. That must be done with the 
 
 ### Telnet
 For experimenting, I added a telnet interface using the [ESP Telnet library](https://github.com/LennartHennigs/ESPTelnet) from Lennart Hennigs. \
-Typing a question mark followed by <CR> shows the possible commands.\
+Typing a question mark followed by a CR shows the possible commands.\
 At some time, using that interface you can connect it to home automation, sending commands through that interface.
 Of course, this is pretty unsafe. NO UID /PWD or the like, so never ever make this accessible from the internet
 
