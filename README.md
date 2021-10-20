@@ -29,8 +29,9 @@ Opto coupler is a LTV-817-B, but pretty much any opto coupler capable of dealing
 Diode at input is an IN4001  (high voltage). Transistors are 2N2222 , but any NPN will do just fine.
 
 ### IR led resistor value
-I use a 10 Ohm resistor to limit the IR current. IR led has 1.5V forward, Remains 3.3-1.5 = 1.8 volts. With 10 Ohms that would be 180mA peak, which is way over its max current of approx 100mA. But the IR LED is powered with (38 Khz) pulses, that is why the effective current is much lower and the peaks are very short. You see many examples in IR transmitter projects where only 10Ohms is used. I checked this in practice, with a higher value the IR light signal is not powerfull enough.\
-But if I would rebuild, I would probable use 18 Ohms or so.   
+I use a 10 Ohm resistor to limit the IR current. See [This link](https://newbedev.com/using-a-transistor-to-get-100ma-on-a-ir-led) for an explanation. We need good light, because the IR signal is indirect (reflection) because the fan's IR eye sits opposite of the powerleads.\
+IR led has 1.5V forward, Hfe of the transistor is somewhere about 100. With the 1KOhm base resitor, base current = (3.3-0.7)/1000 = 2.6 mA, with a Hfe of 75 we saturate the transistor. When saturated, the VCE is about 0.7V. So max current is (3.3-1.5-0.7)/10 = 110 mA. A bit over the max or the IR led (100mA). But since the LED is driven by short 38Khz bursts, the peak current is very short, thus effective current much lower.\
+You find many other examples with IR transmitters powerd by a transistor where only 10Ohms is used.  But if I would rebuild, I would probable try  18 Ohms or so.   
 
 ### Photo resistor
 On the PCB you may have noticed a photoresistor that was not in the schematics. The photoresistor is serially wired to a 10K resistor (between gnd and vcc) and connected to Wemos A0, an analog input. This is because I wanted to  find out if I can detect if the light is (already) on or off. However, that does  not work, the daylight interferes way to much with the light.
