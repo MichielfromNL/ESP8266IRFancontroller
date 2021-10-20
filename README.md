@@ -73,7 +73,7 @@ Flash size:  4MB, 1MB OTA, 115200,  Use the OTA port to flash. \
 Note: the initial upload requires an USB connection. That must be done with the 3v3 jumper disconnected, to prevent a clash between the onboard power from USB and the 3v3 from the power supply. **NEVER POWER THE PCB AND USE THE USB AT THE SAME TIME**
 
 ### Telnet
-For experimenting, I added a telnet interface using the [ESP Telnet](https://github.com/LennartHennigs/ESPTelnet) library from @LennartHennigs \
+For experimenting, I added a telnet interface using the [ESP Telnet library](https://github.com/LennartHennigs/ESPTelnet) from Lennart Hennigs. \
 Typing a question mark followed by <CR> shows the possible commands.\
 At some time, using that interface you can connect it to home automation, sending commands through that interface.
 Of course, this is pretty unsafe. NO UID /PWD or the like, so never ever make this accessible from the internet
