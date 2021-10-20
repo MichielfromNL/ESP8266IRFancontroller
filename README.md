@@ -20,7 +20,7 @@ The final PCB  (Note: the Gnd coloured green/yellow wire is connected to the lig
 ![The PCB](/images/PCB.jpg)
 
 I mounted the IR led under the Wemos D1, because the led peeps through a small hole at the front of the 3D printed box.\
-Make sure that the 220V part on the PCB is properly separated/insulated from the low voltage parts. be safe !
+Make sure that the 220V part on the PCB is properly separated/insulated from the low voltage parts. **Be safe !**
 
 ## Some details about the code & project.
 
@@ -70,11 +70,11 @@ void sendCmd(IRcommand cmd, int repeat = 3) {
 ### Wemos D1 configuration
 The Arduino IDE Wemos D1 config for this sketch is:\
 Flash size:  4MB, 1MB OTA, 115200,  Use the OTA port to flash. \
-Note: the initial upload requires an USB connection. That must be done with the 3v3 jumper disconnected, to prevent a clash between the onboard power from USB and the 3v3 from the power supply. **NEVER POWER THE PCB and the USB at the same time**
+Note: the initial upload requires an USB connection. That must be done with the 3v3 jumper disconnected, to prevent a clash between the onboard power from USB and the 3v3 from the power supply. **NEVER POWER THE PCB AND USE THE USB AT THE SAME TIME**
 
 ### Telnet
 For experimenting, I added a telnet interface using the [ESP Telnet](https://github.com/LennartHennigs/ESPTelnet) library from Lennart Hennigs.
-Typing a question mark shows the possible commands.\
+Typing a question mark followed by <CR> shows the possible commands.\
 At some time, using that interface you can connect it to home automation, sending commands through that interface.
 Of course, this is pretty unsafe. NO UID /PWD or the like, so never ever make this accessible from the internet
 
